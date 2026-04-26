@@ -22,6 +22,8 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+import { SerwistProvider } from "./serwist";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        <SerwistProvider swUrl="/sw.js">
+          {children}
+        </SerwistProvider>
+      </body>
     </html>
   );
 }
