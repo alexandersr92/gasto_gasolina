@@ -40,13 +40,17 @@ export default function ConfiguracionModal({ isOpen, onClose, config, onSave }: 
         <div className="form-group">
           <label className="form-label">Presupuesto Mensual</label>
           <input
-            type="number"
-            inputMode="numeric"
-            pattern="[0-9]*"
+            type="text"
+            inputMode="decimal"
             placeholder="Monto X (Ej. 1000)"
             className="form-input"
             value={monto}
-            onChange={(e) => setMonto(e.target.value)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (/^[0-9]*[.,]?[0-9]*$/.test(val)) {
+                setMonto(val);
+              }
+            }}
           />
         </div>
 

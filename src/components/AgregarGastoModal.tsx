@@ -31,14 +31,17 @@ export default function AgregarGastoModal({ isOpen, onClose, onSave }: Props) {
         <div className="form-group">
           <label className="form-label">Monto gastado</label>
           <input
-            type="number"
-            step="0.01"
-            inputMode="numeric"
-            pattern="[0-9]*"
+            type="text"
+            inputMode="decimal"
             placeholder="Ej. 500"
             className="form-input"
             value={monto}
-            onChange={(e) => setMonto(e.target.value)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (/^[0-9]*[.,]?[0-9]*$/.test(val)) {
+                setMonto(val);
+              }
+            }}
             autoFocus
           />
         </div>
